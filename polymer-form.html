@@ -1,0 +1,81 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+
+<!--
+Example:
+
+    <polymer-form></polymer-form>
+
+@group Seed Elements
+@element polymer-form
+@demo demo/index.html
+@hero hero.svg
+-->
+<dom-module id="polymer-form">
+
+  <style>
+    :host {
+      display: block;
+      box-sizing: border-box;
+    }
+
+    paper-material {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+
+    paper-button {
+      background-color: lightblue;
+    }
+  </style>
+
+  <template>
+
+    <paper-material>
+    
+      <paper-input label="username" value="{{user.name}}"></paper-input>
+
+      <paper-input label="password" type="password" value="{{user.password}}"></paper-input>
+
+      <paper-button on-tap="userChanged" raised>Submit</paper-button>
+
+    </paper-material>
+
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'polymer-form',
+
+    properties: {
+
+      user: {
+        type: Object,
+        value: {
+          name: "",
+          password: ""
+        }
+      }
+
+    },
+    userChanged: function(e){
+      console.log("User name: " + this.user.name);
+      console.log("Password: " + this.user.password)
+
+
+      // call login here
+    },
+    ready: function(e){
+      this.addEventListener("userChanged", this.userChanged);
+    }
+  });
+
+</script>
